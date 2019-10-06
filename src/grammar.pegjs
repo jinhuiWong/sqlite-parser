@@ -229,7 +229,7 @@ literal_date "Date Literal"
  *   {@link https://www.sqlite.org/lang_keywords.html}
  */
 literal_string "String Literal"
-  = n:( number_sign )? s:( literal_string_single )
+  = n:( number_sign )? s:( literal_string_single / literal_string_double )
   {
     return {
       'type': 'literal',
@@ -239,7 +239,7 @@ literal_string "String Literal"
   }
 
 literal_string_single "Single-quoted String Literal"
-  = sym_sglquote s:( literal_string_schar )* sym_sglquote
+  = "'" s:( literal_string_schar )* "'"
   {
     /**
      * @note Unescaped the pairs of literal single quotation marks
@@ -250,9 +250,20 @@ literal_string_single "Single-quoted String Literal"
     return unescape(s, "'");
   }
 
+literal_string_double "double-quoted String Literal"
+  = '"' s:( literal_string_dchar )* '"'
+  {
+    return unescape(s, '"');
+  }
+
+
 literal_string_schar
   = "''"
   / [^\']
+
+literal_string_dchar
+  = '""'
+  / [^\"]
 
 literal_blob "Blob Literal"
   = [x]i b:( literal_string_single )
