@@ -25,7 +25,9 @@
   "browser": "dist/sqlite-parser.js",
   "scripts": {
     "test": "grunt test",
-    "build": "grunt release"
+    "debug": "grunt debug",
+    "build": "grunt release",
+    "live": "grunt live"
   },
   "engines": {
     "node": ">=4"
