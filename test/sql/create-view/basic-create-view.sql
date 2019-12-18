@@ -1,4 +1,4 @@
-CREATE VIEW happy.bananaView
+CREATE VIEW happy.bananaview
 AS
   SELECT type, name, origin
   FROM bananas

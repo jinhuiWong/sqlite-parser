@@ -28,7 +28,7 @@ CREATE TABLE t4(x);
         UPDATE trig SET a = 1;
       END
 ;INSERT INTO trig VALUES (1,1)
-;SELECT COUNT(*) FROM trig
+;SELECT count(*) FROM trig
 ;PRAGMA auto_vacuum
 ;PRAGMA max_page_count = 1000000;
     CREATE TABLE abc(a, b, c);

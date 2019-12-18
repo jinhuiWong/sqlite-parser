@@ -1,7 +1,7 @@
-/* select id from Movies where id in
- * (select movie_id from Rooms where seats > 75);
- */ SELECT 1; /* select id from Movies where id in
- * (select movie_id from Rooms where seats > 75);
+/* select id from movies where id in
+ * (select movie_id from rooms where seats > 75);
+ */ SELECT 1; /* select id from movies where id in
+ * (select movie_id from rooms where seats > 75);
  * /*
  * nested block comment -- here is another one
  * /* another nest level */
@@ -11,9 +11,9 @@
  */
 
 select movie_id
- -- FROM Movies
+ -- FROM movies
  -- WHERE seats != 0
-from Rooms -- unicorn
+from rooms -- unicorn
 AS hat
    -- comments!
 where seats > 75 -- happy birthday

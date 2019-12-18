@@ -1,2 +1,2 @@
-SELECT COUNT(*), MAX(price)
+SELECT count(*), max(price)
 FROM apples

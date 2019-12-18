@@ -11,4 +11,4 @@ nap (a) as (
   from naps
 )
 SELECT *
-FROM Nick
+FROM nick

@@ -1,5 +1,5 @@
 select
   'hat'.*,
-  COUNT(*) as'pants'
+  count(*) as'pants'
 from
   hats 'hat'

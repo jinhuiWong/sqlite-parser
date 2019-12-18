@@ -8,8 +8,8 @@ create table test1(id integer primary key,a);
       from test1 join test2 on test2.id =  test1.id;
     create trigger I_test instead of insert on test
       begin
-        insert into test1 (id,a) values (NEW.id,NEW.a);
-        insert into test2 (id,b) values (NEW.id,NEW.b);
+        insert into test1 (id,a) values (new.id,new.a);
+        insert into test2 (id,b) values (new.id,new.b);
       end;
     insert into test values(1,2,3);
     select * from test1
@@ -19,8 +19,8 @@ create table test1(id integer primary key,a);
 ;select * from test2
 ;create trigger U_test instead of update on test
       begin
-        update test1 set a=NEW.a where id=NEW.id;
-        update test2 set b=NEW.b where id=NEW.id;
+        update test1 set a=new.a where id=new.id;
+        update test2 set b=new.b where id=new.id;
       end;
     update test set a=22 where id=1;
     select * from test1

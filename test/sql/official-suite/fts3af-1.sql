@@ -33,7 +33,7 @@ CREATE VIRTUAL TABLE t1 USING fts3(content);
   INSERT INTO t1 (rowid, content) VALUES(22, 'two three five');
   DELETE FROM t1 WHERE rowid = 19;
   UPDATE t1 SET content = 'update' WHERE rowid = 15
-;SELECT COUNT(*) FROM t1
+;SELECT count(*) FROM t1
 ;SELECT rowid FROM t1 WHERE content MATCH 'update'
 ;SELECT rowid FROM t1 WHERE content MATCH 'one'
 ;SELECT rowid FROM t1 WHERE content MATCH 'two'

@@ -48,7 +48,7 @@ DETACH test1
 ;INSERT INTO t3 VALUES(44,55,66)
 ;CREATE TABLE tx(a1,a2,b1,b2,c1,c2);
       CREATE TRIGGER r1 AFTER UPDATE ON t2 FOR EACH ROW BEGIN
-        INSERT INTO tx VALUES(OLD.a,NEW.a,OLD.b,NEW.b,OLD.c,NEW.c);
+        INSERT INTO tx VALUES(OLD.a,new.a,OLD.b,new.b,OLD.c,new.c);
       END;
       UPDATE t2 SET a=a+1;
       SELECT * FROM tx
@@ -59,7 +59,7 @@ DETACH test1
 ;CREATE VIEW v1 AS SELECT a+b AS x FROM t2;
     CREATE TABLE v1chng(x1,x2);
     CREATE TRIGGER r2 INSTEAD OF UPDATE ON v1 BEGIN
-      INSERT INTO v1chng VALUES(OLD.x,NEW.x);
+      INSERT INTO v1chng VALUES(OLD.x,new.x);
     END;
     SELECT * FROM v1
 ;UPDATE v1 SET x=1 WHERE x=117
@@ -77,7 +77,7 @@ DETACH test1
       ORDER BY name
 ;CREATE TABLE t5 ( x );
       CREATE TRIGGER t5_tr1 AFTER INSERT ON t5 BEGIN 
-        UPDATE t5 SET x = 1 WHERE NEW.x = 0;
+        UPDATE t5 SET x = 1 WHERE new.x = 0;
       END
 ;INSERT INTO t5 (x) values(0)
 ;SELECT * FROM t5
