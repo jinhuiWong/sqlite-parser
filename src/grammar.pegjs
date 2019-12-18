@@ -53,7 +53,7 @@
   function textNode(node) {
     return nodeToString(node).trim();
   }
-
+  
   function keyNode(node) {
     return textNode(node).toLowerCase();
   }
@@ -1171,6 +1171,8 @@ stmt_crud_types
   / stmt_insert
   / stmt_update
   / stmt_delete
+  / stmt_desc
+  / stmt_show_columns
 
 /** {@link https://www.sqlite.org/lang_select.html} */
 stmt_select "SELECT Statement"
@@ -1761,6 +1763,42 @@ stmt_delete "DELETE Statement"
 delete_start "DELETE Keyword"
   = s:( DELETE ) o FROM o
   { return keyNode(s); }
+
+//show columns from tableName1
+stmt_show_columns "SHOW COLUMNS Statement"
+  = show_start o t:( table_qualified )
+ {
+    return Object.assign({
+      'type': 'statement',
+      'variant': 'desc',
+      'from': t
+    });
+  }
+
+show_start "SHOW COLUMNS Keyword"
+  = s:( SHOW ) o  COLUMNS  o FROM o
+  { return keyNode(s); }
+
+// desc tableName2
+stmt_desc "DESC Statement"
+  = desc_start  o t:( table_qualified )
+  {
+    return Object.assign({
+      'type': 'statement',
+      'variant': 'desc',
+      'from': t
+    });
+  }
+
+desc_start "DESC Keyword"
+  = s:( desc_keywords ) o 
+  { return keyNode(s); }
+
+desc_keywords
+  = DESC
+  / DESCRIBE
+
+
 
 /**
  * @note
@@ -3052,6 +3090,12 @@ DELETE
   = "DELETE"i !name_char
 DESC
   = "DESC"i !name_char
+DESCRIBE
+  = "DESCRIBE"i !name_char
+SHOW
+  = "SHOW"i !name_char
+COLUMNS
+  = "COLUMNS"i !name_char
 DETACH
   = "DETACH"i !name_char
 DISTINCT
