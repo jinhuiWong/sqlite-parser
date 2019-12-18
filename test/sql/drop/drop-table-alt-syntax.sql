@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS hive.beeStuff
+DROP TABLE IF EXISTS hive.beestuff

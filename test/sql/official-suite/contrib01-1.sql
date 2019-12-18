@@ -42,13 +42,13 @@ CREATE TABLE T1 (B INTEGER NOT NULL,
     INSERT INTO T1(B, C, D, E, F, G, H) VALUES(16183,15638,6,0,5,2,0);
     INSERT INTO T1(B, C, D, E, F, G, H) VALUES(16183,15681,6,0,5,5,0);
     INSERT INTO T1(B, C, D, E, F, G, H) VALUES(16183,15682,6,0,5,2,0)
-;SELECT T2.A, T2.B, T1.D, T1.E, T1.F, T1.G, T1.H, MAX(T1.C), '^'
+;SELECT T2.A, T2.B, T1.D, T1.E, T1.F, T1.G, T1.H, max(T1.C), '^'
       FROM T1, T2
      WHERE T1.B = T2.B
        AND T1.C = T2.C
      GROUP BY T2.A, T2.B, T1.D, T1.E, T1.F, T1.G, T1.H
      ORDER BY +max(t1.c)
-;SELECT T2.A, T2.B, T1.D, T1.E, T1.F, T1.G, T1.H, MAX(T1.C), '^'
+;SELECT T2.A, T2.B, T1.D, T1.E, T1.F, T1.G, T1.H, max(T1.C), '^'
      FROM T1, T2
     WHERE T1.B = T2.B
       AND T1.C = T2.C

@@ -26,7 +26,7 @@ CREATE TABLE t1(a,b);
 ;select * from sqlite_temp_master
 ;CREATE TABLE tx(x1,x2,y1,y2);
     CREATE TRIGGER r1 AFTER UPDATE ON t2 FOR EACH ROW BEGIN
-      INSERT INTO tx(x1,x2,y1,y2) VALUES(OLD.x,NEW.x,OLD.y,NEW.y);
+      INSERT INTO tx(x1,x2,y1,y2) VALUES(OLD.x,new.x,OLD.y,new.y);
     END;
     SELECT * FROM tx
 ;UPDATE t2 SET x=x+10;
@@ -80,13 +80,13 @@ CREATE TABLE t1(a,b);
 ;DETACH db2
 ;CREATE TABLE t4(x);
       CREATE TRIGGER t3r3 AFTER INSERT ON t3 BEGIN
-        INSERT INTO t4 VALUES('db2.' || NEW.x);
+        INSERT INTO t4 VALUES('db2.' || new.x);
       END;
       INSERT INTO t3 VALUES(6,7);
       SELECT * FROM t4
 ;CREATE TABLE t4(y);
       CREATE TRIGGER t3r3 AFTER INSERT ON t3 BEGIN
-        INSERT INTO t4 VALUES('main.' || NEW.a);
+        INSERT INTO t4 VALUES('main.' || new.a);
       END;
       INSERT INTO main.t3 VALUES(11,12);
       SELECT * FROM main.t4

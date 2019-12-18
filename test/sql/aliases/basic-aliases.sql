@@ -1,6 +1,6 @@
 SELECT
   apple as "The Apple",
-  pear The_Pear,
+  pear the_pear,
   orange AS [TheOrange],
-  pineapple whereKeyword
+  pineapple wherekeyword
 FROM bananas AS b

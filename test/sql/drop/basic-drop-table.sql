@@ -1,1 +1,1 @@
-DROP TABLE beeStuff
+DROP TABLE beestuff

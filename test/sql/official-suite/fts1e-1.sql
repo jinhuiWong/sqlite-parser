@@ -32,7 +32,7 @@ CREATE VIRTUAL TABLE t1 USING fts1(content);
   INSERT INTO t1 (rowid, content) VALUES(22, 'two three five');
   DELETE FROM t1 WHERE rowid = 19;
   DELETE FROM t1 WHERE rowid = 22
-;SELECT COUNT(*) FROM t1
+;SELECT count(*) FROM t1
 ;SELECT rowid FROM t1 WHERE content MATCH 'one'
 ;SELECT rowid FROM t1 WHERE content MATCH 'two'
 ;SELECT rowid FROM t1 WHERE content MATCH 'three'

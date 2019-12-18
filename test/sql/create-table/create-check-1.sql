@@ -1,4 +1,4 @@
-CREATE TABLE Bees (
+CREATE TABLE bees (
   id int PRIMARY KEY,
   name varchar(50) NOT NULL UNIQUE,
   wings int CHECK(wings >= 2),

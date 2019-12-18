@@ -38,7 +38,7 @@ CREATE TABLE t1(a, b);
   
   CREATE TRIGGER TGR_InventoryControl_AfterInsert
   AFTER INSERT ON InventoryControl 
-  FOR EACH ROW WHEN NEW.ControlState=-1 BEGIN 
+  FOR EACH ROW WHEN new.ControlState=-1 BEGIN 
 
   INSERT OR REPLACE INTO InventoryControl(
         InventoryControlId,SKU,Variant,ControlDate,ControlState,DeliveredQty
@@ -51,18 +51,18 @@ CREATE TABLE t1(a, b);
           COALESCE(T2.DeliveredQty,0) AS DeliveredQty
       FROM (
           SELECT
-              NEW.InventoryControlId AS InventoryControlId,
+              new.InventoryControlId AS InventoryControlId,
               II.SKU AS SKU,
               II.Variant AS Variant,
-              COALESCE(LastClosedIC.ControlDate,NEW.ControlDate) AS ControlDate
+              COALESCE(LastClosedIC.ControlDate,new.ControlDate) AS ControlDate
           FROM
               InventoryItem II
           LEFT JOIN
               InventoryControl LastClosedIC
               ON  LastClosedIC.InventoryControlId IN ( SELECT 99999 )
           WHERE
-              II.SKU=NEW.SKU AND
-              II.Variant=NEW.Variant
+              II.SKU=new.SKU AND
+              II.Variant=new.Variant
       )   T1
       LEFT JOIN (
           SELECT
@@ -72,8 +72,8 @@ CREATE TABLE t1(a, b);
           FROM
               TransactionDetail TD
           WHERE
-              TD.SKU=NEW.SKU AND
-              TD.Variant=NEW.Variant
+              TD.SKU=new.SKU AND
+              TD.Variant=new.Variant
       )   T2
       ON  T2.SKU=T1.SKU AND
           T2.Variant=T1.Variant;
